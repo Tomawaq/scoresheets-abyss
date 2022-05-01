@@ -92,10 +92,10 @@ dialog.modal {
     }
     &#calculator {
         --btn-width: 4rem;
-        input#formula {
+        input[data-result] {
             text-align: right;
             pointer-events: none;
-            &:focus-visible{
+            &:focus-visible {
                 outline: none;
             }
         }

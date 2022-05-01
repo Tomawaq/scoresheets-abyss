@@ -130,12 +130,12 @@ dialog.modal#calculator {
   --btn-width: 4rem;
 }
 
-dialog.modal#calculator input#formula {
+dialog.modal#calculator input[data-result] {
   text-align: right;
   pointer-events: none;
 }
 
-dialog.modal#calculator input#formula:focus-visible {
+dialog.modal#calculator input[data-result]:focus-visible {
   outline: none;
 }
 
