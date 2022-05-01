@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Indie Flower', cursive;
+}
+
+body {
+    min-height: 100vh;
+    background: url(img/Abyss_3_1080.jpg) center -800px fixed;
+}
+
+nav button {
+    --icon-size: 4em;
+    --icon-padding: 1em;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    padding: 1rem;
+    color: white;
+    position: absolute;
+}
+
+nav button#trash {
+    top: 1rem;
+    left: 1rem;
+}
+
+nav button#export {
+    top: 1rem;
+    left: calc(1rem + var(--icon-size) + var(--icon-padding));
+}
+
+nav button#config {
+    top: 1rem;
+    right: 1rem;
+}
+
+nav button.left {
+    justify-self: flex-start;
+}
+
+nav button.right {
+    justify-self: flex-end;
+
+}
+
+body, section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+}
+
+section {
+    width: min(max(90vw, 400px), 500px);
+}
+
+article {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+}
+
+h1 {
+    padding: .5rem 1rem;
+}
+
+.row>div, h1, nav>button {
+    background: rgba(0, 0, 0, 0.55);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+nav>button, 
+:is(.row.location, .row.lord, .row.ally, .row.monster)>div:not(:first-child) {
+    cursor: pointer;
+    transition: all ease 10ms;
+}
+
+nav>button:hover,
+:is(.row.location, .row.lord, .row.ally, .row.monster)>div:not(:first-child):hover {
+    color: rgb(153, 105, 248);
+    box-shadow: 0 8px 16px 0 rgba(31, 38, 135, 0.37),
+        0 0px 16px 0 rgba(71, 38, 135, 0.77);
+        --opacity: .75;
+}
+
+nav>button:active,
+:is(.row.location, .row.lord, .row.ally, .row.monster)>div:not(:first-child):active {
+    color: rgb(188, 155, 253);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        0 0px 64px 0 rgba(106, 77, 163, 0.77);
+        --opacity: .75;
+        transform: translate(1px,1px);
+}
+
+.row>div {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, var(--opacity, 0.25));
+}
+
+.row>div img {
+    width: 70%;
+}
+
+.row>div span {
+    font-size: 3rem;
+}
+
+.row.player>div,
+.row.total>div,
+.row>div:first-child {
+    --opacity: .75;
+}
+
+.row.location>div:not(:first-child),
+.row.ally>div:not(:first-child) {
+    --opacity: .4;
+}
+
+.row.player>div span {
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+    transform: rotate(-40deg);
+}
