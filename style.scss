@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Roboto&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: url(img/Abyss_3_1080.jpg) center -800px fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    padding: 0.5rem 1rem;
+}
+
+nav {
+    button {
+        --icon-size: 4em;
+        --icon-padding: 1em;
+        width: var(--icon-size);
+        height: var(--icon-size);
+        padding: 1rem;
+        color: white;
+        position: absolute;
+        &#trash {
+            top: 1rem;
+            left: 1rem;
+        }
+        &#export {
+            top: 1rem;
+            left: calc(1rem + var(--icon-size) + var(--icon-padding));
+        }
+        &#config {
+            top: 1rem;
+            right: 1rem;
+        }
+    }
+}
+
+dialog.modal {
+    padding: 1em;
+    max-width: 50ch;
+    margin: auto;
+    font-family: "Roboto", sans-serif;
+    &[open] {
+        animation: modal-open 200ms forwards;
+    }
+    &.close {
+        animation: modal-close 200ms forwards;
+    }
+    &::backdrop {
+        background: rgba(0, 0, 0, 0.65);
+    }
+    & > * {
+        margin: 0 0 0.5rem 0;
+    }
+    input[type="checkbox"]:checked ~ label > .detail.off {
+        display: none;
+    }
+    input[type="checkbox"]:not(:checked) ~ label > .detail.on {
+        display: none;
+    }
+    label {
+        cursor: pointer;
+    }
+    .detail {
+        width: 100%;
+        text-align: end;
+        font-size: 0.9rem;
+        font-style: italic;
+    }
+    button[type="submit"] {
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        font-weight: bold;
+    }
+    form {
+        display: flex;
+        gap: 2rem;
+        flex-direction: column;
+        align-items: center;
+    }
+    &#settings {
+        width: 50ch;
+    }
+    &#calculator {
+        --btn-width: 4rem;
+        input#formula {
+            text-align: right;
+            pointer-events: none;
+            &:focus-visible{
+                outline: none;
+            }
+        }
+        [data-keyboard] {
+            display: grid;
+            grid-template-columns: repeat(4, var(--btn-width));
+            grid-template-rows: repeat(5, var(--btn-width));
+            button {
+                width: 100%;
+                height: 100%;
+                font-size: calc(var(--btn-width) / 2);
+            }
+            button[data-clear] {
+                grid-column: 1 / 3;
+            }
+            button[data-equal] {
+                grid-column: 3 / -1;
+            }
+        }
+    }
+}
+
+@keyframes modal-open {
+    0% {
+        transform: translateY(25px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes modal-close {
+    0% {
+        transform: translateY(25px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+    width: calc(min(max(90vw, 400px), 500px));
+    font-family: "Indie Flower", cursive;
+    article {
+        width: 100%;
+        h1 {
+            padding: 0.5rem 1rem;
+        }
+        .row {
+            display: flex;
+            width: 100%;
+            & > div {
+                width: 100%;
+                aspect-ratio: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                background: rgba(0, 0, 0, var(--opacity, 0.25));
+            }
+
+            & > div img {
+                width: 70%;
+            }
+
+            & > div span {
+                font-size: 3rem;
+            }
+
+            &.player > div,
+            &.total > div,
+            & > div:first-child {
+                --opacity: 0.75;
+            }
+
+            &.location > div:not(:first-child),
+            &.ally > div:not(:first-child) {
+                --opacity: 0.4;
+            }
+
+            &.player > div span {
+                font-size: 1.2rem;
+                line-height: 1.3rem;
+                transform: rotate(-40deg);
+            }
+        }
+    }
+}
+
+.glass {
+    background: rgba(0, 0, 0, 0.55);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    &.input {
+        background: rgba(58, 58, 58, 0.63);
+        color: rgb(209, 209, 209);
+        padding: 0.5rem 1rem;
+        font-weight: bold;
+        font-size: 1.1rem;
+        &::placeholder {
+            color: rgb(122, 122, 122);
+            font-weight: 400;
+            font-style: italic;
+        }
+    }
+    &.btn {
+        cursor: pointer;
+        transition: all ease 10ms;
+        &:hover {
+            color: rgb(209, 187, 255);
+            box-shadow: 0 8px 16px 0 rgba(31, 38, 135, 0.37), 0 0px 16px 0 rgba(71, 38, 135, 0.77);
+            --opacity: 0.75 !important;
+        }
+        &:active {
+            color: rgb(188, 155, 253);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 0px 64px 0 rgba(106, 77, 163, 0.77);
+            --opacity: 0.75 !important;
+            transform: translate(1px, 1px);
+        }
+    }
+}
+
+.justify-start {
+    justify-self: start;
+    width: 100%;
+}
