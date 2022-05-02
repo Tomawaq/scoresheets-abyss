@@ -292,6 +292,10 @@ section article .row.player > div span {
           transform: rotate(-40deg);
 }
 
+section article .row.total > div:first-child {
+  cursor: pointer;
+}
+
 .glass {
   background: rgba(0, 0, 0, 0.55);
   -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);

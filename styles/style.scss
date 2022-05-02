@@ -190,6 +190,9 @@ section {
                 line-height: 1.3rem;
                 transform: rotate(-40deg);
             }
+            &.total > div:first-child {
+                cursor: pointer;
+            }
         }
     }
 }
