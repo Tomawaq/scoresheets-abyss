@@ -8,7 +8,7 @@ const calculator = new Calculator('dialog#calculator')
 const onOpenScoreModal = (dialog, ev) => {
     const playerNumber = scoreSheet.getPlayerId(ev.target)
     const playerName = scoreSheet.getPlayerName(playerNumber)
-    if(!playerName) return false
+    if (!playerName) return false
     const playerScore = scoreSheet.getScoreId(ev.target)
     dialog.dataset.playerNumber = playerNumber
     dialog.dataset.playerScore = playerScore
@@ -19,7 +19,7 @@ const onOpenScoreModal = (dialog, ev) => {
 const onCloseScoreModal = (dialog, ev) => {
     const result = dialog.querySelector('input[data-result]').value
     scoreSheet.setPlayerScore(dialog.dataset.playerNumber, dialog.dataset.playerScore, result)
-    if(document.querySelector('input#auto_total').checked)
+    if (document.querySelector('input#auto_total').checked)
         scoreSheet.calcTotal()
 }
 new Modal('settings')
@@ -41,8 +41,8 @@ new Modal({
     id: 'calculator',
     onOpen: onOpenScoreModal,
     onClose: (dialog, ev) => {
-        if(calculator.compute() === false) return false
-        if(onCloseScoreModal(dialog, ev) === false) return false
+        if (calculator.compute() === false) return false
+        if (onCloseScoreModal(dialog, ev) === false) return false
     }
 })
 new Modal({
@@ -51,9 +51,23 @@ new Modal({
     onClose: onCloseScoreModal
 })
 
+const capture = async () => {
+    const screenshotTarget = document.body
+    const nav = document.querySelector('nav')
+    nav.style.display = 'none'
+    html2canvas(screenshotTarget).then((canvas) => {
+        nav.style.display = 'block'
+        window.open().document.write('<iframe src="' + canvas.toDataURL("image/png") + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+    });
+};
+
+
 document.addEventListener('click', ev => {
     if (ev.target.closest('button#trash') !== null) {
         scoreSheet.clear(document.querySelector('input#clear_names').checked)
+    }
+    if (ev.target.closest('button#export') !== null) {
+        capture()
     }
 })
 
