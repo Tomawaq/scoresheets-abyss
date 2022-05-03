@@ -67,7 +67,7 @@ document.addEventListener('click', ev => {
         scoreSheet.clear(document.querySelector('input#clear_names').checked)
     }
     if (ev.target.closest('button#export') !== null) {
-        capture()
+        // capture()
     }
 })
 
