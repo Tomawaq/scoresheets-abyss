@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Roboto&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Roboto&display=swap");
 
 * {
     margin: 0;
@@ -8,7 +8,7 @@
 
 body {
     min-height: 100vh;
-    background: url(../pictures/Abyss_3_1080.jpg) center -800px fixed;
+    background: url(../pictures/Abyss_3_1080.webp) center -800px fixed;
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -164,10 +164,6 @@ section {
                 align-items: center;
                 text-align: center;
                 background: rgba(0, 0, 0, var(--opacity, 0.25));
-            }
-
-            & > div img {
-                width: 70%;
             }
 
             & > div span {
